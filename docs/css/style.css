@@ -62,7 +62,7 @@ a {
 	text-decoration: none;
 }
 nav {
-	position: fixed;
+	position: absolute;
     bottom: 30px;
     width: 100%;
     text-align: center;
