@@ -7,7 +7,7 @@
  *  License: -----
  */
  
-var CoreMobCamera = (function() {
+var ohsnap = (function() {
 	
 	var maxFilesize = 1048576 * 3.5; // Max image size is 3.5MB (iPhone5, Galaxy SIII, Lumia920 < 3MB)
 	var numPhotosSaved = 0;
@@ -53,7 +53,7 @@ var CoreMobCamera = (function() {
 	}
 	
 	function openDatabase() {
-		CoreMobCameraiDB.openDB(dbSuccess, dbFailure);
+		ohsnapiDB.openDB(dbSuccess, dbFailure);
 		function dbSuccess(dbPhotos) {
 			createGallery(dbPhotos);
 			document.getElementById('uploadButton').setAttribute('hidden', 'hidden');
@@ -179,7 +179,7 @@ var CoreMobCamera = (function() {
 
 			// get blob from db then send
 		    if (photoid) {
-			    CoreMobCameraiDB.getPhotoFromDB(photoid, function(data) {
+			    ohsnapiDB.getPhotoFromDB(photoid, function(data) {
 					if (typeof data.photo === 'string') {
 					    data.photo = util.dataUrlToBlob(data.photo);
 					}
@@ -200,11 +200,11 @@ var CoreMobCamera = (function() {
 				var confirmDelete = confirm('Are you sure you want to delete the photo?');
 				if(confirmDelete) {
 					var deletingId = parseInt(e.target.getAttribute('data-id'));
-					CoreMobCameraiDB.deletePhoto(deletingId, deleteCallback);	
+					ohsnapiDB.deletePhoto(deletingId, deleteCallback);	
 				}
 			}
 			function deleteCallback() {
-				CoreMobCameraiDB.listPhotosFromDB(reRenderCallback);
+				ohsnapiDB.listPhotosFromDB(reRenderCallback);
 				
 				function reRenderCallback(dbPhotos) {
 					document.querySelector('.thumbnail-wrapper').innerHTML = '';
@@ -219,7 +219,7 @@ var CoreMobCamera = (function() {
 		document.getElementById('clearDB').addEventListener('click', function() {
 			var confirmDelete = confirm('Are you sure you want to delete all photos?');
 			if(confirmDelete) {
-				CoreMobCameraiDB.deleteDB();	
+				ohsnapiDB.deleteDB();	
 			}		
 		}, false);
 	}
@@ -314,7 +314,7 @@ var CoreMobCamera = (function() {
 		function gotPhotoInfo(data) {
 			data.title = util.stripHtml(window.prompt('Description:'));
 			
-			CoreMobCameraiDB.putPhotoInDB(data, addSuccess, blobFailure);
+			ohsnapiDB.putPhotoInDB(data, addSuccess, blobFailure);
 			
 			function addSuccess(dbPhotos){
 				numPhotosSaved++;
@@ -327,7 +327,7 @@ var CoreMobCamera = (function() {
 				isBlobSupported = false;
 				data.photo = canvas.toDataURL('image/jpeg');
 				
-				CoreMobCameraiDB.putPhotoInDB(data, addSuccess);
+				ohsnapiDB.putPhotoInDB(data, addSuccess);
 				
 				var warning = document.getElementById('warningIndexedDbBlob');
 				showUI(warning);
@@ -578,5 +578,5 @@ var CoreMobCamera = (function() {
 }());
 
 onload = function() {
-	CoreMobCamera.init();
+	ohsnap.init();
 }

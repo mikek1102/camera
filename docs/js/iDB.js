@@ -1,4 +1,4 @@
-var CoreMobCameraiDB = (function(){
+var ohsnapiDB = (function(){
 
 	var db;
 	
@@ -28,7 +28,7 @@ var CoreMobCameraiDB = (function(){
 
 	function deleteDB() {
 		db.close();
-		var req = indexedDB.deleteDatabase('coremobCamera');
+		var req = indexedDB.deleteDatabase('ohsnap');
 		req.onsuccess = function(e) {
 			console.log('Database is deleted: '+ e.result);
 			alert('Database deleted.');
@@ -74,7 +74,7 @@ var CoreMobCameraiDB = (function(){
         	return;
         }
         
-        var req = indexedDB.open('coremobCamera'); 
+        var req = indexedDB.open('ohsnap'); 
         req.onsuccess = function(e) {
         	db = e.target.result;
         	console.log(db);
