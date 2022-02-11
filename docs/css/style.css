@@ -62,8 +62,8 @@ a {
 	text-decoration: none;
 }
 nav {
-	position: absolute;
-    bottom: 30px;
+	position: fixed;
+    bottom: 40px;
     width: 100%;
     text-align: center;
         
@@ -86,7 +86,7 @@ footer {
 
 #firstrun {
     position: fixed;
-    bottom: 85px;
+    bottom: 150px;
     text-align: center;
     width: 100%;
     font-size: 24px;
