@@ -33,21 +33,22 @@ img {
     box-sizing: border-box;
 }
 body {   
-    background: #f3f3f3;
+	background-image: linear-gradient(315deg, #e9bcb7 0%, #29524a 74%);
     color: #212121;
     padding: 0;
+	
 }
 header {
-    background: #C6CCDA;
-    background: -webkit-linear-gradient(top, #C6CCDA 10%, #757783 100%);
-    background: -moz-linear-gradient(top, #C6CCDA 10%, #757783 100%);
-    background: -ms-linear-gradient(top, #C6CCDA 10%, #757783 100%);
-    background: -o-linear-gradient(top, #C6CCDA 10%, #757783 100%);
-    background: linear-gradient(top, #C6CCDA 10%, #757783 100%);
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0.7) 10%,rgba(0,0,0,0.5) 100%);
+    background: -moz-linear-gradient(top, rgba(0,0,0,0.7) 10%,rgba(0,0,0,0.5) 100%);
+    background: -ms-linear-gradient(top, rgba(0,0,0,0.7) 10%,rgba(0,0,0,0.5) 100%);
+    background: -o-linear-gradient(top, rgba(0,0,0,0.7) 10%,rgba(0,0,0,0.5) 100%);
+    background: linear-gradient(top, rgba(0,0,0,0.7) 10%,rgba(0,0,0,0.5) 100%);
     box-shadow: 0 5px 10px rgba(0, 0, 0, .25);
     margin-bottom: 1.5em;
     height: 50px;
     overflow: hidden;
+	text-align: center;
 }
 header h1 {
     font-size: 1.4em;
@@ -90,12 +91,16 @@ footer {
     text-align: center;
     width: 100%;
     font-size: 24px;
+	background: #f3f3f3;
+	padding-bottom: 100%;
+	margin-bottom: -100%; /* positive padding, neg margin makes the div background span full page */
 }
 .arrow-container {
 	background: url(../images/cover-photo.jpg) center bottom no-repeat;
 	background-size: auto 100%;	
 	width: 100%;
 	height: 450px; /* change dynamically */
+
 }
 
 /* Main Pane */
