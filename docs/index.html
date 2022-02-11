@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+	<title>CoreMob Camera</title>
+	
+	<meta charset="utf-8">
+	
+	<meta name="application-name" content="CoreMob Camera">
+	<meta name="viewport" content="width=device-width">
+	
+	<!-- IE10 Tile -->
+    <meta name="msapplication-TileImage" content="images/icons/144x144.png">
+    <meta name="msapplication-TileColor" content="#bada55">
+    
+	<!-- Home Screen icons for iOS, Android, BlackBerry, etc. -->
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/icons/144x144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/icons/72x72.png">
+    <link rel="apple-touch-icon-precomposed" href="images/icons/57x57.png">
+    <link rel="shortcut icon" href="images/icons/144x144.png">
+    
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/swiper.css">
+</head>
+<body>	
+	<section id="loader" hidden>Processing...</section>
+	
+	<section id="main">
+		<header>
+			<h1>Coremob Camera</h1>
+		</header>
+		
+		<!-- <p id="userAgent" style="font-size:.75rem;white-space: nowrap;"></p> -->
+		
+		<section id="warnings">
+			<div id="warningMediaCapture" class="icon-warning high-alert" aria-hidden="true" data-icon="&#x26a0;" hidden><span>Your browser does not support <a href="http://www.w3.org/TR/html-media-capture/" target="_blank">HTML Media Capture</a>.</span></div>
+			<div id="warningIndexedDb" class="icon-warning med-alert" aria-hidden="true" data-icon="&#x26a0;" hidden><span>Your browser does not support <a href="http://www.w3.org/TR/IndexedDB/" target="_blank">IndexedDB</a>.</span>
+			</div>
+			<div id="warningIndexedDbBlob" class="icon-warning" aria-hidden="true" data-icon="&#x26a0;" hidden><span>Your browser can not store <strong>blob</strong> objects into <a href="http://www.w3.org/TR/IndexedDB/" target="_blank">IndexedDB</a>. Storing data URL strings instead.</span>
+			</div>
+			<div id="warningHistory" class="icon-warning" aria-hidden="true" data-icon="&#x26a0;" hidden><span>Your browser does not support <a href="http://www.w3.org/TR/2011/WD-html5-20110113/history.html" target="_blank">History API</a>.</span></div>
+		</section>
+	
+		
+		<section id="firstrun" class="thumb" hidden>
+			<p>Get started with HTML5!</p>
+			<div class="arrow-container"></div>
+		</section>
+		
+	    <section id="thumbnails">
+	    	<div class="thumbnail-wrapper">
+	    	</div>
+	    </section>
+	    
+	    <a style="position:fixed; bottom:50px; right:0; cursor:pointer; color:#aaa;" id="clearDB">Delete DB</a>
+	    
+	    <nav>
+    		<div class="camera" data-icon="&#x235f;" onclick="document.getElementById('camera').click();return false;"></div>
+
+	    	<form id="filePickerContainer" style="position:absolute;left: -999px">
+	            <label for="imagefile"></label>
+	            <!-- in the latest spec, the capture attribute type has been switched to a boolean. -->
+	            <input type="file" capture="camera" accept="image/*" name="camera" id="camera" />
+	        </form>
+	    </nav> 
+	</section>
+	
+	<!-- Gallery Carousel -->
+	<section id="singleView" hidden>
+		<header>
+			<nav>
+				<a id="dismissSingleView" class="back" data-icon="&#x21a9;" href="index.html"></a>
+				<a id="shareButton" class="share" data-icon="&#x25b2;" href="index.html"><span>Upload to W3C</span></a>
+			</nav>
+		</header>
+		<div class="swiper-container"></div>
+		<div class="pagination"></div>
+	</section>
+	
+	
+	<!-- Photo Preview -->
+	<section id="photoEffect" hidden>
+		<div id="photoResultContainer">
+			<img id="originalPhoto" hidden>
+			<img id="resultPhoto">
+		</div>	
+	
+		<!-- Photo Effects Buttons -->
+		<nav id="filterDrawer" hidden>
+			<!-- Filter Effects -->
+			<section id="filterButtons">
+				<div id="reset" class="filter">
+					<div class="filter-tag">Normal</div>
+				</div>
+				<div id="fluorescent" class="filter">
+					<div class="filter-tag">Fluorescent</div>
+				</div>
+				<div id="nostalgia" class="filter">
+					<div class="filter-tag">Nostalgia</div>
+				</div>
+				<div id="phykos" class="filter">
+					<div class="filter-tag">Phykos</div>
+				</div>
+				<div id="lotus" class="filter">
+					<div class="filter-tag">Lotus</div>
+				</div>
+				<div id="memphis" class="filter">
+					<div class="filter-tag">Memphis</div>
+				</div>
+				<div id="deutlich" class="filter">
+					<div class="filter-tag">Deutlich</div>
+				</div>
+				<div id="sumie" class="filter">
+					<div class="filter-tag">Sumie</div>
+				</div>
+				<div id="rockstar" class="filter">
+					<div class="filter-tag">Rock Star</div>
+				</div>
+			</section>
+			
+			<!-- File Save and Upload -->
+			<form id="uploadForm" class="action-buttons" enctype="multipart/form-data" method="post" action="/upload">
+				<input type="button" value="Save in DB" id="saveButton">
+				<input type="button" value="Upload" id="uploadButton">
+			</form>
+		</nav>
+	</section>
+	
+	<section id="photoUpload">
+
+	</section>
+	
+	<script defer src="js/util.js"></script>
+	<script defer src="js/iDB.js"></script>
+	<script defer src="js/swiper-1.7.js"></script>
+	<script defer src="js/photoCrop.js"></script>
+	<script defer src="js/photoFilter.js"></script>
+	<script defer src="js/effects.js"></script>
+	<script defer src="js/main.js"></script>
+</body>
+</html>
