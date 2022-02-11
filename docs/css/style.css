@@ -38,12 +38,12 @@ body {
     padding: 0;
 }
 header {
-    background: #ff1f97;
-    background: -webkit-linear-gradient(top, #ff1f97 10%, #c30f6c 100%);
-    background: -moz-linear-gradient(top, #ff1f97 10%, #c30f6c 100%);
-    background: -ms-linear-gradient(top, #ff1f97 10%, #c30f6c 100%);
-    background: -o-linear-gradient(top, #ff1f97 10%, #c30f6c 100%);
-    background: linear-gradient(top, #ff1f97 10%, #c30f6c 100%);
+    background: #C6CCDA;
+    background: -webkit-linear-gradient(top, #C6CCDA 10%, #757783 100%);
+    background: -moz-linear-gradient(top, #C6CCDA 10%, #757783 100%);
+    background: -ms-linear-gradient(top, #C6CCDA 10%, #757783 100%);
+    background: -o-linear-gradient(top, #C6CCDA 10%, #757783 100%);
+    background: linear-gradient(top, #C6CCDA 10%, #757783 100%);
     box-shadow: 0 5px 10px rgba(0, 0, 0, .25);
     margin-bottom: 1.5em;
     height: 50px;
@@ -92,7 +92,7 @@ footer {
     font-size: 24px;
 }
 .arrow-container {
-	background: url(../images/arrow.png) center bottom no-repeat;
+	background: url(../images/cover-photo.jpg) center bottom no-repeat;
 	background-size: auto 100%;	
 	width: 100%;
 	height: 450px; /* change dynamically */
