@@ -63,7 +63,7 @@ a {
 }
 nav {
 	position: fixed;
-    bottom: 30;
+    bottom: 30px;
     width: 100%;
     text-align: center;
         
