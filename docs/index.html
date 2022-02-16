@@ -99,15 +99,18 @@
 	        </form>
 	    </nav> 
 	</section>
-	<div>
-		<input type="file" id="fileUpload">
-	</div>
+	<section>
+		<div>
+			<input type="file" id="fileUpload">
+		</div>
+	
+		<div>
+		<button onclick="s3upload()">Submit</button>
+		</div>
+	
+		<progress max=”100” value=”0”></progress>
 
-	<div>
-	<button onclick="s3upload()">Submit</button>
-	</div>
-
-	<progress max=”100” value=”0”></progress>
+	</section>
 	
 	<!-- Gallery Carousel -->
 	<section id="singleView" hidden>
