@@ -1,5 +1,28 @@
 <!doctype html>
 <html>
+<!-- import s3 sdk, set buckt config-->
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.357.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+
+//Bucket Configurations
+
+ var bucketName = "mk-oh-snap-2";
+ var bucketRegion = "us-east-1";
+ var IdentityPoolId = "us-east-1:f4bfb736-37fc-46f1-b659-65b2deb713f4";
+
+ AWS.config.update({
+                region: bucketRegion,
+                credentials: new AWS.CognitoIdentityCredentials({
+                IdentityPoolId: IdentityPoolId
+                })
+            });
+
+            var s3 = new AWS.S3({
+                apiVersion: '2006-03-01',
+                params: {Bucket: bucketName}
+        });
+</script>
 <head>
 	<title>Mike and Sammy</title>
 	
@@ -158,5 +181,6 @@
 	<script defer src="js/photoFilter.js"></script>
 	<script defer src="js/effects.js"></script>
 	<script defer src="js/main.js"></script>
+	<script defer src="js/s3.js"></script>
 </body>
 </html>
