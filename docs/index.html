@@ -45,6 +45,15 @@
 			<p>Pics or it didn't happen</p>
 			<div class="arrow-container"></div>
 			<p>click the camera to snap a pic of our special day</p>
+			<div>
+				<input type="file" id="fileUpload">
+			</div>
+		
+			<div>
+			<button onclick="s3upload()">Submit</button>
+			</div>
+		
+			<progress max=”100” value=”0”></progress>
 		</section>
 		
 	    <section id="thumbnails">
@@ -64,18 +73,18 @@
 	            <label for="imagefile"></label>
 	            <!-- in the latest spec, the capture attribute type has been switched to a boolean. -->
 	            <input type="file" capture="camera" accept="image/*" name="camera" id="camera" />
-				<div>
-					<input type="file" id="fileUpload">
-				</div>
-			
-				<div>
-				<button onclick="s3upload()">Submit</button>
-				</div>
-			
-				<progress max=”100” value=”0”></progress>
 	        </form>
 	    </nav> 
 	</section>
+	<div>
+		<input type="file" id="fileUpload">
+	</div>
+
+	<div>
+	<button onclick="s3upload()">Submit</button>
+	</div>
+
+	<progress max=”100” value=”0”></progress>
 	
 	<!-- Gallery Carousel -->
 	<section id="singleView" hidden>
