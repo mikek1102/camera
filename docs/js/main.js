@@ -195,7 +195,7 @@ var ohsnap = (function() {
 
 		// save to s3
 		function s3upload() {  
-			var files = document.getElementById('filteredPhoto') || document.getElementById('croppedPhoto');
+			var files = document.getElementById('fileUpload').files;
 			if (files) 
 			{
 				var file = files[0];
