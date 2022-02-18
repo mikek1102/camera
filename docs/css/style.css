@@ -487,3 +487,11 @@ figure {
 .icon-warning.high-alert::before {
 	color: #ff1f97;
 }
+
+/* upload files to s3 */
+.upload-button {
+	display: inline-flex;
+	position:fixed; 
+	bottom:35px; 
+	right:0;
+}

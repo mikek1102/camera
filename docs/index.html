@@ -68,15 +68,7 @@
 			<p>Pics or it didn't happen</p>
 			<div class="arrow-container"></div>
 			<p>click the camera to snap a pic of our special day</p>
-			<div>
-				<input type="file" id="fileUpload">
-			</div>
-		
-			<div>
-			<button onclick="s3upload()">Submit</button>
-			</div>
-		
-			<progress max=”100” value=”0”></progress>
+			
 		</section>
 		
 	    <section id="thumbnails">
@@ -98,18 +90,17 @@
 	            <input type="file" capture="camera" accept="image/*" name="camera" id="camera" />
 	        </form>
 	    </nav> 
-	</section>
-	<section>
-		<div>
-			<input type="file" id="fileUpload">
-		</div>
-	
-		<div>
-		<button onclick="s3upload()">Submit</button>
-		</div>
-	
-		<progress max=”100” value=”0”></progress>
-
+		<section class="upload-button">
+			<div>
+				<input type="file" id="fileUpload">
+			</div>
+		
+			<div>
+			<button onclick="s3upload()">Submit</button>
+			</div>
+		
+			<!--<progress max=”100” value=”0”></progress>-->
+		</section>
 	</section>
 	
 	<!-- Gallery Carousel -->
