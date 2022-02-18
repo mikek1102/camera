@@ -15,7 +15,7 @@
         });
         
         function s3upload() {  
-            var files = document.getElementsByClassName("fileUploadButton").files;
+            var files = document.getElementById('fileUpload').files;
             if (files) 
             {
                 var file = files[0];
