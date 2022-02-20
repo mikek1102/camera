@@ -15,7 +15,7 @@
         });
         
         function s3upload() {  
-            var files = document.getElementById('fileUpload').files;
+            var files = document.getElementById('camera').files;
             if (files) 
             {
                 var file = files[0];

@@ -87,10 +87,10 @@
 	    	<form id="filePickerContainer" style="position:absolute;left: -999px">
 	            <label for="imagefile"></label>
 	            <!-- in the latest spec, the capture attribute type has been switched to a boolean. -->
-	            <input type="file" capture="camera" accept="image/*" name="camera" id="camera" />
+	            <input type="file" accept="image/*" name="camera" id="camera" />
 	        </form>
 	    </nav> 
-		<section class="upload-button">
+		<!--<section class="upload-button">
 			<div>
 				<input type="file" id="fileUpload">
 			</div>
@@ -99,8 +99,8 @@
 			<button onclick="s3upload()">Submit</button>
 			</div>
 		
-			<!--<progress max=”100” value=”0”></progress>-->
-		</section>
+			<progress max=”100” value=”0”></progress>
+		</section> -->
 	</section>
 	
 	<!-- Gallery Carousel -->
@@ -158,7 +158,7 @@
 			
 			<!-- File Save and Upload -->
 			<form id="uploadForm" class="action-buttons" enctype="multipart/form-data" method="post" action="/upload">
-				<input type="button" value="Submit" id="saveButton">
+				<input type="button" value="Submit" id="saveButton" onclick="s3upload()">
 				<input type="button" value="Upload" id="uploadButton">
 			</form>
 		</nav>
