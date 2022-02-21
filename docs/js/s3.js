@@ -14,12 +14,13 @@
                 params: {Bucket: bucketName}
         });
         
-        function s3upload() {  
+        function s3upload() { 
+             
             var files = document.getElementById('camera').files;
             if (files) 
             {
                 var file = files[0];
-                var fileName = file.name;
+                var fileName = Math.floor(Math.random() * 10000000) + file.name;
                 var filePath = 'mk-oh-snap-2/' + fileName;
                 var fileUrl = 'https://' + 'us-east-1' + '.amazonaws.com/mk-oh-snap-2/' +  filePath;
         

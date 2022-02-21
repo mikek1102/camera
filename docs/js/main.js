@@ -163,7 +163,7 @@ var ohsnap = (function() {
 			getBlobFromCanvas(canvas, data, gotPhotoInfo);
 
 			function gotPhotoInfo(data) {
-				data.title = util.stripHtml(window.prompt('Description:'));			
+				data.title = document.getElementById('camera').files; + document.getElementById('camera').getAttribute('data-photoid');	
 
 				if(typeof data.photo === 'object') {
 					startUpload(data);
@@ -312,7 +312,7 @@ var ohsnap = (function() {
 		}
 		
 		function gotPhotoInfo(data) {
-			data.title = util.stripHtml(window.prompt('Description:'));
+			data.title = document.getElementById('camera').files; + document.getElementById('camera').getAttribute('data-photoid');
 			
 			ohsnapiDB.putPhotoInDB(data, addSuccess, blobFailure);
 			
