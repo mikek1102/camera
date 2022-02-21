@@ -192,33 +192,6 @@ var ohsnap = (function() {
 		
 		// Save a photo in iDB as blob
 		document.getElementById('saveButton').addEventListener('click', savePhoto, false);
-
-		// save to s3
-		function s3upload() {  
-			var files = document.getElementById('fileUpload').files;
-			if (files) 
-			{
-				var file = files[0];
-				var fileName = file.name;
-				var filePath = 'mk-oh-snap-2/' + fileName;
-				var fileUrl = 'https://' + 'us-east-1' + '.amazonaws.com/mk-oh-snap-2/' +  filePath;
-		
-				s3.upload({
-								Key: filePath,
-								Body: file,
-								ACL: 'public-read'
-							}, function(err, data) {
-								if(err) {
-									reject('error');
-								}
-								
-								alert('Successfully Uploaded!');
-							}).on('httpUploadProgress', function (progress) {
-								var uploaded = parseInt((progress.loaded * 100) / progress.total);
-								$("progress").attr('value', uploaded);
-							});
-			}
-  };
 		
 		// Delete a photo
 		document.getElementById('singleView').addEventListener('click', function(e) {
