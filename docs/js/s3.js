@@ -34,6 +34,7 @@
                                 }
                                 
                                 alert('Successfully Uploaded!');
+                                location.replace("index.html");
                             }).on('httpUploadProgress', function (progress) {
                                 var uploaded = parseInt((progress.loaded * 100) / progress.total);
                                 $("progress").attr('value', uploaded);

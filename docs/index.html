@@ -23,6 +23,8 @@
                 params: {Bucket: bucketName}
         });
 </script>
+<script src="js/PhotoViewer.js"></script>
+<script>viewAlbum('mk-oh-snap-2');</script>
 <head>
 	<title>Mike and Sammy</title>
 	
@@ -73,16 +75,13 @@
 		
 	    <section id="thumbnails">
 	    	<div class="thumbnail-wrapper">
+				<div id="viewer" />
 	    	</div>
 	    </section>
 	    
-		<section id="clearDB">
-			<a style="position:fixed; bottom:5px; right:0; cursor:pointer; color:rgb(250, 4, 4);" id="clearDB">Delete DB</a>
-		</section>
-	    
 	    
 	    <nav>
-    		<div class="camera" data-icon="&#x235f;" onclick="document.getElementById('camera').click();return false;"></div>
+    		<div class="camera" data-icon="&#x235f;" onclick="document.getElementById('camera').click();return true;"></div>
 
 	    	<form id="filePickerContainer" style="position:absolute;left: -999px">
 	            <label for="imagefile"></label>
@@ -90,17 +89,6 @@
 	            <input type="file" accept="image/*" name="camera" id="camera" />
 	        </form>
 	    </nav> 
-		<!--<section class="upload-button">
-			<div>
-				<input type="file" id="fileUpload">
-			</div>
-		
-			<div>
-			<button onclick="s3upload()">Submit</button>
-			</div>
-		
-			<progress max=”100” value=”0”></progress>
-		</section> -->
 	</section>
 	
 	<!-- Gallery Carousel -->
@@ -108,7 +96,6 @@
 		<header>
 			<nav>
 				<a id="dismissSingleView" class="back" data-icon="&#x21a9;" href="index.html"></a>
-				<a id="shareButton" class="share" data-icon="&#x25b2;" href="index.html"><span>Upload to W3C</span></a>
 			</nav>
 		</header>
 		<div class="swiper-container"></div>
@@ -121,6 +108,7 @@
 		<div id="photoResultContainer">
 			<img id="originalPhoto" hidden>
 			<img id="resultPhoto">
+			<input type="button" value="cancel" id="saveButton" href="index.html">
 		</div>	
 	
 		<!-- Photo Effects Buttons -->
@@ -159,7 +147,7 @@
 			<!-- File Save and Upload -->
 			<form id="uploadForm" class="action-buttons" enctype="multipart/form-data" method="post" action="/upload">
 				<input type="button" value="Submit" id="saveButton" onclick="s3upload()">
-				<input type="button" value="Upload" id="uploadButton">
+				<a id="dismissSingleView" class="back" data-icon="&#x21a9;" href="index.html"></a>
 			</form>
 		</nav>
 	</section>
@@ -176,5 +164,7 @@
 	<script defer src="js/effects.js"></script>
 	<script defer src="js/main.js"></script>
 	<script defer src="js/s3.js"></script>
+
+	
 </body>
 </html>

@@ -20,7 +20,10 @@ form {
     font: 1.2em/1.3em 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Roboto-Light', 'Roboto Light', 'Roboto', 'Segoe UI Web Light', 'Segoe UI Light', 'Segoe UI Web Regular', 'Segoe UI', Helvetica, Arial, sans-serif;
 }
 img {
+	display: block;
+	margin: 0 auto;
 	border: 0;
+	padding-top: 20px;
 }
 
 /* Base Styles */
@@ -291,6 +294,7 @@ figure {
 }
 #thumbnails .thumbnail-wrapper {
 	margin-left: -2px; /* adjust for the left column thumb */
+	
 }
 #thumbnails figure {
 	display: inline-block;
@@ -495,3 +499,22 @@ figure {
 	bottom:35px; 
 	right:0;
 }
+th, td {
+	padding-left: 25px;
+	padding-right: 25px;
+  }
+
+  ul {
+	display: inline-table;
+	flex-wrap: wrap;
+	list-style-type: none;
+	padding-left: 0;
+  }
+  
+  li {
+	flex: 0 0 calc(50% - 10px);
+	margin: 5px;
+	padding: 5px 0;
+	text-align: center;
+	box-sizing: border-box;
+  }

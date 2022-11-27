@@ -39,7 +39,6 @@ var ohsnap = (function() {
 		viewWidth = (window.innerWidth < finalPhotoDimension) ? window.innerWidth : finalPhotoDimension;
 		
 		bindEvents();		
-		openDatabase();
 		checkMediaCaptureSupport();
 		console.log(navigator.userAgent);
 	}
@@ -52,19 +51,6 @@ var ohsnap = (function() {
 		uiElem.setAttribute('hidden', 'hidden');
 	}
 	
-	function openDatabase() {
-		ohsnapiDB.openDB(dbSuccess, dbFailure);
-		function dbSuccess(dbPhotos) {
-			createGallery(dbPhotos);
-			document.getElementById('uploadButton').setAttribute('hidden', 'hidden');
-		}
-		function dbFailure() {
-			renderFirstRun();
-			var warning = document.getElementById('warningIndexedDb');
-			showUI(warning);
-			document.getElementById('saveButton').setAttribute('disabled', 'disabled');
-	    }
-	}
 	
 	function reInit() {
 		hideUI(firstRun);
@@ -155,41 +141,6 @@ var ohsnap = (function() {
 			hideUI(sectionSingleView);
 		}, false);
 		
-		// Uploading a photo without storing in DB
-		document.getElementById('uploadButton').addEventListener('click', function(){
-			var data = {};
-
-			var canvas = document.getElementById('filteredPhoto') || document.getElementById('croppedPhoto');
-			getBlobFromCanvas(canvas, data, gotPhotoInfo);
-
-			function gotPhotoInfo(data) {
-				data.title = document.getElementById('camera').files; + document.getElementById('camera').getAttribute('data-photoid');	
-
-				if(typeof data.photo === 'object') {
-					startUpload(data);
-				}
-			}
-			
-		}, false);		
-		
-		// Uploading a photo
-		document.getElementById('shareButton').addEventListener('click', function(e){
-			e.preventDefault();
-		    var photoid = parseInt(e.target.getAttribute('data-photoid'), 10);
-
-			// get blob from db then send
-		    if (photoid) {
-			    ohsnapiDB.getPhotoFromDB(photoid, function(data) {
-					if (typeof data.photo === 'string') {
-					    data.photo = util.dataUrlToBlob(data.photo);
-					}
-					if(data && typeof data.photo === 'object') {
-					    startUpload(data);
-					}
-			    });
-			}			
-		}, false);	
-		
 		// Save a photo in iDB as blob
 		document.getElementById('saveButton').addEventListener('click', savePhoto, false);
 		
@@ -215,13 +166,6 @@ var ohsnap = (function() {
 			}
       	}, false);
       	
-		// Delete All - temp
-		document.getElementById('clearDB').addEventListener('click', function() {
-			var confirmDelete = confirm('Are you sure you want to delete all photos?');
-			if(confirmDelete) {
-				ohsnapiDB.deleteDB();	
-			}		
-		}, false);
 	}
 
     function prepFilterEffect(e) {
