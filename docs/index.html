@@ -53,9 +53,9 @@
 		<section id="main-header">
 			<header>
 				<h1>Oh Snap!</h1>
-					<p>click the camera to snap a pic of our special day</p>
+				<p>Click the camera to snap a pic of our special day</p>
 			</header>
-	    </section>
+		</section>
 		
 		<!-- <p id="userAgent" style="font-size:.75rem;white-space: nowrap;"></p> -->
 		
@@ -66,6 +66,14 @@
 			<div id="warningIndexedDbBlob" class="icon-warning" aria-hidden="true" data-icon="&#x26a0;" hidden><span>Your browser can not store <strong>blob</strong> objects into <a href="http://www.w3.org/TR/IndexedDB/" target="_blank">IndexedDB</a>. Storing data URL strings instead.</span>
 			</div>
 			<div id="warningHistory" class="icon-warning" aria-hidden="true" data-icon="&#x26a0;" hidden><span>Your browser does not support <a href="http://www.w3.org/TR/2011/WD-html5-20110113/history.html" target="_blank">History API</a>.</span></div>
+		</section>
+	
+		
+		<section id="firstrun" class="thumb" hidden>
+			<p>Pics or it didn't happen</p>
+			<div class="arrow-container"></div>
+			<p>click the camera to snap a pic of our special day</p>
+			
 		</section>
 		
 	    <section id="thumbnails">
@@ -84,6 +92,17 @@
 	            <input type="file" accept="image/*" name="camera" id="camera" />
 	        </form>
 	    </nav> 
+	</section>
+	
+	<!-- Gallery Carousel -->
+	<section id="singleView" hidden>
+		<header>
+			<nav>
+				<a id="dismissSingleView" class="back" data-icon="&#x21a9;" href="index.html"></a>
+			</nav>
+		</header>
+		<div class="swiper-container"></div>
+		<div class="pagination"></div>
 	</section>
 	
 	
@@ -131,7 +150,7 @@
 			<!-- File Save and Upload -->
 			<form id="uploadForm" class="action-buttons" enctype="multipart/form-data" method="post" action="/upload">
 				<input type="button" value="Submit" id="saveButton" onclick="s3upload()">
-				<a id="dismissSingleView" class="back" data-icon="&#x21a9;" href="index.html"></a>
+				<a id="dismissSingleView" class="back" data-icon="&#x21a9;" href="index.html">Cancel</a>
 			</form>
 		</nav>
 	</section>
