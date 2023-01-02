@@ -42,7 +42,7 @@ function viewAlbum(albumName) {
         '<section id="thumbnails">',
         '<div class="thumbnail-wrapper">',
             '<br/>',
-            '<img style="width:50%;height:50%;" src="' + photoUrl + '"/>',
+            '<img src="' + photoUrl + '"/>',
         '</div>',
         '</section>',
       ]);

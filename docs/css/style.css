@@ -24,6 +24,10 @@ img {
 	margin: 0 auto;
 	border: 0;
 	padding-bottom: 20px;
+	aspect-ratio: 3/2;
+	object-fit: contain;
+	height: 50%;
+	width: 50%;
 }
 
 /* Base Styles */
@@ -303,10 +307,12 @@ figure {
 }
 #thumbnails {
 	margin: 0 auto;
-	font-size: 0; line-height: 0;
+	font-size: 0; 
+	line-height: 0;
 }
 #thumbnails .thumbnail-wrapper {
 	margin-left: -2px; /* adjust for the left column thumb */
+	
 	
 }
 #thumbnails figure {
@@ -322,6 +328,13 @@ figure {
 }
 #thumbnails figcaption, #thumbnails a {
 	display: none;
+}
+
+#img-main {
+	aspect-ratio: 3/2;
+	object-fit: contain;
+	width: 50%;
+	height: 50%;
 }
 
 /* Gallery Single View */
