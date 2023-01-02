@@ -19,16 +19,6 @@ form {
     margin: 0;
     font: 1.2em/1.3em 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Roboto-Light', 'Roboto Light', 'Roboto', 'Segoe UI Web Light', 'Segoe UI Light', 'Segoe UI Web Regular', 'Segoe UI', Helvetica, Arial, sans-serif;
 }
-img {
-	display: block;
-	margin: 0 auto;
-	border: 0;
-	padding-bottom: 20px;
-	aspect-ratio: 3/2;
-	object-fit: contain;
-	height: 50%;
-	width: 50%;
-}
 
 /* Base Styles */
 
@@ -59,8 +49,7 @@ nav {
 	position: fixed;
     bottom: 40px;
     width: 100%;
-    text-align: center;
-        
+    text-align: center; 
     background: -webkit-linear-gradient(top, rgba(0,0,0,0.7) 10%,rgba(0,0,0,0.5) 100%);
     background: -moz-linear-gradient(top, rgba(0,0,0,0.7) 10%,rgba(0,0,0,0.5) 100%);
     background: -ms-linear-gradient(top, rgba(0,0,0,0.7) 10%,rgba(0,0,0,0.5) 100%);
@@ -264,7 +253,7 @@ input[type="button"].dismiss {
 }
 
 #resultPhoto, #croppedPhoto, #filteredPhoto {
-    width: 100%;
+    width: auto;
     height: auto;
 }
 
@@ -299,105 +288,36 @@ h2.label {
     z-index: 10;
 }
 
-/* Gallery Thumbnails */
+/* Gallery Images */
+
+img {
+	display: block;
+	margin: 0 auto;
+	border: 0;
+}
 
 figure {
 	margin: 0;
 	padding: 0;
 }
 #thumbnails {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 20px;
 	margin: 0 auto;
-	font-size: 0; 
-	line-height: 0;
-}
-#thumbnails .thumbnail-wrapper {
-	margin-left: -2px; /* adjust for the left column thumb */
-	
-	
-}
-#thumbnails figure {
-	display: inline-block;
-	width: 100px;
-	height: 100px;
-	margin: 0 0 5px 5px;
-	background-repeat: no-repeat;
-	background-position: left top;
-	background-size: cover;
-	box-shadow: inset 0 0 6px #000;
-	cursor: pointer;
-}
-#thumbnails figcaption, #thumbnails a {
-	display: none;
-}
-
-#img-main {
-	aspect-ratio: 3/2;
-	object-fit: contain;
-	width: 50%;
-	height: 50%;
-}
-
-/* Gallery Single View */
-
-#singleView header {
-	margin-bottom: 0;
-}
-
-#singleView nav {
-	position: relative;
-	text-align: left;
-}
-#singleView nav a {
-	display: inline-block;
-	color: #fff;
-	position: absolute;
-	top: 0;
-	padding-top: 12px;
-	font-size: 27px;
-}
-#singleView nav .back {
-	left: 10px;
-}
-#singleView nav .share {
-	right: 0;
-}
-#singleView nav .share span {
-	font-size: 20px;
-}
-#singleView {
-	text-align: center;
-}
-#singleView figure {
-	background-repeat: no-repeat;
-	background-position: left top;
-	background-size: 100% auto;
-}
-#singleView figcaption {
-	position: absolute;
-	bottom: 0;
-	text-align: left;
-	padding-left: .5em;
-	width: 80%;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-#singleView a.delete-photo {
-	position: absolute;
-	bottom: 0;
-	right: .5em;
-	color: #ababab;
-	cursor: pointer;
-}
-#singleView a.delete-photo:hover {
-	color: #ff1f97;
-}
-.pagination {
-	margin: .5em auto 1em;
-	width: 100%;
-	overflow: hidden;
-	white-space: nowrap;
-}
+	max-width: 75%;
+  }
+  
+  .thumbnail-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  }
+  
+  .thumbnail-wrapper img {
+	max-width: 100%;
+	max-height: 100%;
+  }
 
 /* Filter Effects */
 
@@ -492,55 +412,9 @@ figure {
 	top: 30px;
 	left: 12px;
 }
-.share::before {
-	content: '';
-}
-.share::after {
-	font-family: 'icons';
-	content: attr(data-icon);
-	speak: none;
-	font-weight: normal;
-	line-height: 1;
-	padding: 0 0.5em;
-	-webkit-font-smoothing: antialiased;
-}
-.icon-warning::before {
-	color: #ffd900;
-	font-size: 42px;
-	text-shadow: 0px 1px 1px rgba(0, 0, 0, .6);
-	position: relative;
-	top: 4px;
-}
-.icon-warning.med-alert::before {
-	color: #ffa91f;
-}
-.icon-warning.high-alert::before {
-	color: #ff1f97;
-}
 
 /* upload files to s3 */
 .upload-button {
 	display: inline-flex;
-	position:fixed; 
-	bottom:35px; 
-	right:0;
+	position:fixed;
 }
-th, td {
-	padding-left: 25px;
-	padding-right: 25px;
-  }
-
-  ul {
-	display: inline-table;
-	flex-wrap: wrap;
-	list-style-type: none;
-	padding-left: 0;
-  }
-  
-  li {
-	flex: 0 0 calc(50% - 10px);
-	margin: 5px;
-	padding: 5px 0;
-	text-align: center;
-	box-sizing: border-box;
-  }

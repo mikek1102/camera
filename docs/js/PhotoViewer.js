@@ -35,20 +35,25 @@ function viewAlbum(albumName) {
     var href = this.request.httpRequest.endpoint.href;
     var bucketUrl = href + albumBucketName + '/';
 
+    // Sort the data.Contents array by the LastModified property
+    data.Contents.sort(function(a, b) {
+      return b.LastModified - a.LastModified;
+    });
+
+    // Map the sorted data.Contents array to create the photos array
     var photos = data.Contents.map(function(photo) {
       var photoKey = photo.Key;
       var photoUrl = bucketUrl + encodeURIComponent(photoKey);
       return getHtml([
-        '<section id="thumbnails">',
         '<div class="thumbnail-wrapper">',
             '<br/>',
-            '<img src="' + photoUrl + '"/>',
+            '<img src="' + photoUrl + '" style="display: inline-block;"/>',
         '</div>',
-        '</section>',
       ]);
     });
+
     var htmlTemplate = [
-      '<div>',
+      '<div id="thumbnails">',
         getHtml(photos),
       '</div>',
     ]
