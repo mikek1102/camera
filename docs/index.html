@@ -69,12 +69,12 @@
 		</section>
 	
 		
-		<section id="firstrun" class="thumb" hidden>
+		<!-- <section id="firstrun" class="thumb" hidden>
 			<p>Pics or it didn't happen</p>
 			<div class="arrow-container"></div>
 			<p>click the camera to snap a pic of our special day</p>
 			
-		</section>
+		</section> -->
 		
 	    
 				<div id="viewer" />
@@ -144,12 +144,15 @@
 				</div>
 			</section>
 			
-			<!-- File Save and Upload -->
-			<form id="uploadForm" class="action-buttons" enctype="multipart/form-data" method="post" action="/upload">
-				<input type="button" value="Submit" id="saveButton" onclick="s3upload()">
-				<a id="dismissSingleView" class="back" data-icon="&#x21a9;" href="index.html">Cancel</a>
-			</form>
 		</nav>
+
+		<!-- File Save and Upload -->
+		<nav>
+		<form id="uploadForm" class="action-buttons" enctype="multipart/form-data" method="post" action="/upload">
+			<input type="button" value="Submit" id="saveButton" onclick="s3upload()">
+			<a id="dismissSingleView" class="back" data-icon="&#x21a9;" href="index.html">Cancel</a>
+		</form>
+	</nav>
 	</section>
 	
 	<section id="photoUpload">

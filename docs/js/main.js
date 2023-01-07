@@ -426,7 +426,7 @@ var ohsnap = (function() {
 		
 		hideUI(sectionMain);
 		showUI(sectionPhotoEffect);
-		showUI(sectionFilterDrawer);
+		hideUI(sectionFilterDrawer);
 		hideUI(originalPhoto);
 		
 		history.pushState({stage: 'effectView'}, null);

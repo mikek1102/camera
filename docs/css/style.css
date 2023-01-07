@@ -31,11 +31,15 @@ form {
 }
 body {   
 	/*background-image: linear-gradient(315deg, #e9bcb7 0%, #29524a 74%);*/
-	background-color: #119466ae;
-	background-size: cover;
+	background: linear-gradient(150deg, #bacdcd, #119466);
+	/* background-color: #119466ae; */
+	background-attachment: fixed; 
     color: #212121;
     padding-top: 75px;
 }
+
+
+
 header {
     height: 75px;
     overflow: hidden;
@@ -289,6 +293,10 @@ h2.label {
 }
 
 /* Gallery Images */
+
+#viewer {
+	padding-top: 20px;
+  }
 
 img {
 	display: block;
