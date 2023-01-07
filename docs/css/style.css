@@ -41,9 +41,10 @@ body {
 
 
 header {
-    height: 75px;
+    min-height: 75px;
     overflow: hidden;
 	text-align: center;
+	line-height: 1.5;
 }
 
 a {
@@ -99,7 +100,7 @@ footer {
 	top: 0;
 	left: 0;
 	right: 0;
-	height: 75px;
+	min-height: 75px;
 	background-color: rgba(0, 0, 0, 0.5);
 	display: flex;
 	align-items: center;
@@ -109,15 +110,13 @@ footer {
   
   #main-header h1 {
 	font-size: 1.4em;
-	line-height: 50px;
 	margin: 0;
 	overflow: hidden;
 	text-align: center;
   }
   
   #main-header p {
-	font-size: 18px;
-	line-height: 5px;
+	font-size: 0.9em;
 	margin: 0;
 	padding: 0;
   }
@@ -213,6 +212,7 @@ button {
 button,
 input[type="button"] {
 	-webkit-appearance: none;
+	appearance: none;
     padding: 8px 24px;
     margin-right: 10px;
     border-radius: 6px;
@@ -407,7 +407,6 @@ figure {
 [data-icon]::before {
 	font-family: 'icons';
 	content: attr(data-icon);
-	speak: none;
 	font-weight: normal;
 	line-height: 1;
 	padding-right: 0.5em;
