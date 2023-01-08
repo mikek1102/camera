@@ -44,10 +44,12 @@ function viewSinglePhoto(photoUrl) {
 
   // Add a click event listener to the modal to close it when clicked
   modal.addEventListener('click', function(event) {
-    if (event.target === modal) {
-      modal.remove();
-    }
-  });
+  // Check if the modal or any of its children were clicked
+  if (event.target === modal || modal.contains(event.target)) {
+    modal.remove();
+  }
+});
+
 }
 
 
