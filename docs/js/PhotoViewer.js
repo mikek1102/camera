@@ -25,9 +25,31 @@ function getHtml(template) {
 }
 
 function viewSinglePhoto(photoUrl) {
-  // Open the full size image in a new window or modal when clicked
-  window.open(photoUrl, '_blank');
+  // Create the modal element
+  var modal = document.createElement('div');
+  modal.classList.add('modal');
+
+  // Create the modal content element and add the full size image to it
+  var modalContent = document.createElement('div');
+  modalContent.classList.add('modal-content');
+  var img = document.createElement('img');
+  img.src = photoUrl;
+  modalContent.appendChild(img);
+
+  // Add the modal content to the modal element
+  modal.appendChild(modalContent);
+
+  // Add the modal to the page
+  document.body.appendChild(modal);
+
+  // Add a click event listener to the modal to close it when clicked
+  modal.addEventListener('click', function(event) {
+    if (event.target === modal) {
+      modal.remove();
+    }
+  });
 }
+
 
 // Show the photos that exist in an album.
 function viewAlbum(albumName) {
