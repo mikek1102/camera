@@ -24,6 +24,11 @@ function getHtml(template) {
   return template.join('\n');
 }
 
+function viewSinglePhoto(photoUrl) {
+  // Open the full size image in a new window or modal when clicked
+  window.open(photoUrl, '_blank');
+}
+
 // Show the photos that exist in an album.
 function viewAlbum(albumName) {
   var albumPhotosKey = encodeURIComponent('mk-oh-snap-2') + '/';
@@ -39,6 +44,7 @@ function viewAlbum(albumName) {
     data.Contents.sort(function(a, b) {
       return b.LastModified - a.LastModified;
     });
+    
 
     // Map the sorted data.Contents array to create the photos array
     var photos = data.Contents.map(function(photo) {
@@ -47,10 +53,12 @@ function viewAlbum(albumName) {
       return getHtml([
         '<div class="thumbnail-wrapper">',
             '<br/>',
-            '<img src="' + photoUrl + '" style="display: inline-block;"/>',
+            '<img src="' + photoUrl + '" style="display: inline-block;" onclick="viewSinglePhoto(\'' + photoUrl + '\');"/>',
         '</div>',
       ]);
     });
+
+
 
     var htmlTemplate = [
       '<div id="thumbnails">',
