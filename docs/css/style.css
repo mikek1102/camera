@@ -35,16 +35,16 @@ body {
 	/* background-color: #119466ae; */
 	background-attachment: fixed; 
     color: #212121;
-    padding-top: 75px;
+    padding-top: 100px;
 }
 
 
 
 header {
-    min-height: 75px;
+    min-height: 100px;
     overflow: hidden;
 	text-align: center;
-	line-height: 1.5;
+	line-height: .5;
 }
 
 a {
@@ -116,7 +116,7 @@ footer {
   }
   
   #main-header p {
-	font-size: 0.9em;
+	font-size: 0.8em;
 	margin: 0;
 	padding: 0;
   }
