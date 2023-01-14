@@ -1,15 +1,7 @@
-/* 
- *  CoreMob Camera
- *  Vanilla JavaScript App
- *  https://github.com/coremob/camera/vanilla
- * 
- *  W3C Core Mobile Web Platform Community Group
- *  License: -----
- */
  
 var ohsnap = (function() {
 	
-	var maxFilesize = 1048576 * 3.5; // Max image size is 3.5MB (iPhone5, Galaxy SIII, Lumia920 < 3MB)
+	var maxFilesize = 1048576 * 5.5; // Max image size is 5.5MB (iPhone5, Galaxy SIII, Lumia920 < 3MB)
 	var numPhotosSaved = 0;
 	var imgCrop;
 	var finalPhotoDimension = 612;
