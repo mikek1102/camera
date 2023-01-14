@@ -331,6 +331,12 @@ figure {
   .thumbnail-wrapper img {
 	max-width: 100%;
 	max-height: 100%;
+	/*add border to the thumbnails*/
+	border: 2px solid #CFB882;
+	border-radius: 5%;
+	padding: 1px;
+	/*add box shadow to the thumbnails*/
+	box-shadow: 0 0 8px #000;
   }
 
 /* Filter Effects */
@@ -449,10 +455,10 @@ figure {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 75%;
-	height: 50%;
+	width: 80%;
+	height: 60%;
 	overflow: auto;
-	background: #393939;
+	background: #CFB882;
   }
   
   .modal-content img {
