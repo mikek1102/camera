@@ -65,9 +65,9 @@ nav {
 	justify-content: center;
 }
 nav img{	
-	width: 25%;
-	height: 30%;
-	margin: 0 15px;
+	max-width: 25%;
+	max-height: 30%;
+	margin: 5%;
 	fill: #fff;
 	-webkit-transition: all .5s ease-in;
 	-moz-transition: all .5s ease-in;
@@ -269,19 +269,24 @@ input[type="button"].dismiss {
     align-items: center;
 }
 
-#reload-button {
-    background-color: #03A65B;
-    border: none;
-    color: white;
-    padding: 10px 32px;
-    text-align: center;
-    text-decoration: none;
+#reload-button::before {
+    content: "";
     display: inline-block;
-    font-size: 16px;
-    margin: 10px 2px;
-    cursor: pointer;
-	box-shadow:  0 4px 4px rgba(0,0,0,0.25);
+    border: 4px solid #f3f3f3; /* Light grey */
+    border-top: 4px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px; /* add some margin between the spinner and the button text */
 }
+
+#reload-button.loading::before {
+    display:inline-block;
+}
+#reload-button.loading {
+    padding-left:30px;
+}
+
 
 /* Add a spinner class to the div inside the button */
 
