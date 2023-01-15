@@ -104,9 +104,6 @@ var ohsnap = (function() {
 			
 		}, false);
 		
-		// Filter Effects selected
-		document.getElementById('filterButtons').addEventListener('click', prepFilterEffect, false);
-		
 		// View a photo in carousel
 		document.getElementById('thumbnails').addEventListener('click', viewSinglePhoto, false);
 		
@@ -132,31 +129,6 @@ var ohsnap = (function() {
 			showUI(sectionMain);
 			hideUI(sectionSingleView);
 		}, false);
-		
-		// Save a photo in iDB as blob
-		document.getElementById('saveButton').addEventListener('click', savePhoto, false);
-		
-		// Delete a photo
-		document.getElementById('singleView').addEventListener('click', function(e) {
-			console.log(e.target);
-			if(e.target.classList.contains('delete-photo')) {
-				var confirmDelete = confirm('Are you sure you want to delete the photo?');
-				if(confirmDelete) {
-					var deletingId = parseInt(e.target.getAttribute('data-id'));
-					ohsnapiDB.deletePhoto(deletingId, deleteCallback);	
-				}
-			}
-			function deleteCallback() {
-				ohsnapiDB.listPhotosFromDB(reRenderCallback);
-				
-				function reRenderCallback(dbPhotos) {
-					document.querySelector('.thumbnail-wrapper').innerHTML = '';
-					document.querySelector('.swiper-container').innerHTML = '';
-					createGallery(dbPhotos);
-					reInit();
-				}
-			}
-      	}, false);
       	
 	}
 
@@ -198,198 +170,6 @@ var ohsnap = (function() {
 			return button;
 		}
     }
-    
-	/**
-	 *  View a single photo from the Gallery
-	 */
-    function viewSinglePhoto(e) {
-	        function setPhotoTarget(index) {
-		    var photoId = document.querySelector('.swiper-container [data-index="' + index + '"]').getAttribute('data-photoid');
-		    document.getElementById('shareButton').setAttribute('data-photoid', photoId);		    
-		}
-
-		if(e.target.classList.contains('thumb')) {
-			var index = (e.target.dataset) ? parseInt(e.target.dataset.index) : parseInt(e.target.getAttribute('data-index'));
-			var revIndex = numPhotosSaved - index - 1;
-			console.log(revIndex);
-		        setPhotoTarget(index);
-			var swiper = new Swiper('.swiper-container', { 
-				pagination: '.pagination',
-			        initialSlide: revIndex,
-			        onSlideChangeEnd: function(s) {
-				    setPhotoTarget(numPhotosSaved - s.activeSlide - 1);
-				}
-			});
-			
-			history.pushState({stage: 'singleView'}, null);
-			showUI(sectionSingleView);
-			hideUI(sectionMain);
-		} 	
-	}
-		
-	/**
-	 * Save Photo (either blob or data url string) in iDB 
-	 * saving blob is currently only supported by Firefox and IE10
-	 */
-	
-    function savePhoto(e) {
-    	var data = {};
-		var canvas = document.getElementById('filteredPhoto') || document.getElementById('croppedPhoto');	
-		
-		if(!canvas) return;
-		
-		if(isBlobSupported === false) { 
-			// no blob support for iDB. Storing dataURL string instead of blob.
-			data.photo = canvas.toDataURL('image/jpeg');
-			gotPhotoInfo(data);
-		} 
-		else {
-			getBlobFromCanvas(canvas, data, gotPhotoInfo); // async callback
-		}
-		
-		function gotPhotoInfo(data) {
-			data.title = document.getElementById('camera').files; + document.getElementById('camera').getAttribute('data-photoid');
-			
-			ohsnapiDB.putPhotoInDB(data, addSuccess, blobFailure);
-			
-			function addSuccess(dbPhotos){
-				numPhotosSaved++;
-				renderPhotos(dbPhotos);
-				reInit();
-			}
-			
-			function blobFailure() {
-				// pass Data URL instead of blob
-				isBlobSupported = false;
-				data.photo = canvas.toDataURL('image/jpeg');
-				
-				ohsnapiDB.putPhotoInDB(data, addSuccess);
-				
-				var warning = document.getElementById('warningIndexedDbBlob');
-				showUI(warning);
-			}
-		}
-
-    }
-    
-    function getBlobFromCanvas(canvas, data, callback) {
-		if (canvas.toBlob) { //canvas.blob() supported. Store blob.
-			var blob = canvas.toBlob(function(blob){
-				data.photo = blob;
-				callback(data);
-			}, 'image/jpeg');
-		} else { // get Base64 dataurl from canvas, then convert it to Blob
-			var dataUrl = canvas.toDataURL('image/jpeg');
-			
-			data.photo = util.dataUrlToBlob(dataUrl);
-			if(data.photo == null) {
-				console.log('Storing DataURL instead.');
-				isBlobSupported = false;
-				data.photo = canvas.toDataURL('image/jpeg');
-			}
-			callback(data);
-		}
-	}
-	
-	function createGallery(dbPhotos) {
-		renderPhotos(dbPhotos);
-		displayThumbnails();
-		cloneThumbNode();
-		scrollInfinitely();	
-	}
-	
-	// Call back after iDB success
-	function renderPhotos(dataArray) {
-
-		var data;
-		var wrapper = document.querySelector('.thumbnail-wrapper');
-
-		if(dataArray.photo) { // a new photo added
-			data = dataArray;
-			var imgUrl = dataArray.photo;
-			var el = thumb(dataArray, imgUrl, numPhotosSaved-1);
-			wrapper.insertBefore(el, wrapper.firstChild);
-			return;
-		}
-
-    	if (dataArray.length == 0) {
-			renderFirstRun();
-	    	return;
-    	}
-    	numPhotosSaved = dataArray.length;
-
-	    firstRun.setAttribute('hidden', 'hidden');
-    	    	
-    	function thumb(data, imgUrl, index) {
-	    	var el = document.createElement('figure');
-	    	el.className = 'thumb';
-	    	el.setAttribute('data-index', index);
-	    	el.setAttribute('data-photoid', data.id);
-	    	el.style.backgroundImage = 'url('+imgUrl+')';
-	    	
-	    	var cap = document.createElement('figcaption');
-	    	cap.textContent = data.title;
-	    	
-	    	var a = document.createElement('a');
-	    	a.className = 'delete-photo';
-	    	a.setAttribute('data-id', data.id);
-        	a.textContent = ' [delete]';
-	    	
-	    	el.appendChild(cap);
-	    	el.appendChild(a);		
-	    		
-	    	return el;
-    	}
-        makeThumbsFromArray();
-        
-        function makeThumbsFromArray() {
-	        var figureEl, imgUrl;
-			setTimeout(function() {
-				revokeDataUrls(dataArray.slice())
-			}, 10);
-		    while (data = dataArray.pop()) {
-		    	if(data.photo) {
-		    		imgUrl = data.photo;
-			    	figureEl = thumb(data, imgUrl, dataArray.length);
-			    	wrapper.appendChild(figureEl);
-		    	}
-			}   
-        }		
-		
-		function revokeDataUrls(dataArrayCopy) {
-			var URL = window.URL || window.webkitURL;
-			for(var i = 0; i < dataArrayCopy.length; i++) {
-				URL.revokeObjectURL(dataArrayCopy[i].photo);
-			}
-		}
-    }
-    
-	function displayThumbnails(resizeScreen) {	
-		var eachWidth = 105, // css .thumb
-			thumbsPerRow = (window.innerWidth / eachWidth) >>> 0;
-		
-		document.getElementById('thumbnails').style.width = thumbsPerRow * eachWidth + 'px';
-		
-		var container = document.querySelector('.swiper-container');
-		
-		container.style.width = viewWidth +'px';
-		container.style.height = (viewWidth + 40) + 'px';
-	}
-	
-	function cloneThumbNode() {
-		var container = document.querySelector('.swiper-container');
-		var thumbNode = document.querySelector('.thumbnail-wrapper');
-		var thumbViewNode = thumbNode.cloneNode(true);
-	
-		thumbViewNode.className = 'swiper-wrapper';
-		var children = thumbViewNode.children;
-		
-		for (var i = 0; i < children.length; i++) {
-			children[i].className = 'swiper-slide';
-		}
-		
-		container.appendChild(thumbViewNode);
-	}
 	
 	function scrollInfinitely() {
 		// TO DO
@@ -460,29 +240,6 @@ var ohsnap = (function() {
 	    };
 		
 	    imgFile.readAsDataURL(localFile);
-	}
-	
-
-	/**
-	 * Upload to server -- data should contains a blob
-	 */
-	 
-	function startUpload(data) {	
-		showUI(loader);
-		
-	    var formData = new FormData();
-	    formData.append('image', data.photo);
-	    formData.append('title', data.title);
-	    
-		var xhr = new XMLHttpRequest();        
-		xhr.open('POST', '/gallery'); 
-	    
-	    xhr.upload.addEventListener('progress', uploadProgress, false);
-	    xhr.addEventListener('load', uploadFinish, false);
-	    xhr.addEventListener('error', uploadError, false);
-	    xhr.addEventListener('abort', uploadAbort, false);
-	    
-	    xhr.send(formData);
 	}
 
 	function uploadProgress(e) { 
