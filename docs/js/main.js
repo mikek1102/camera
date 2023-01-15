@@ -273,3 +273,15 @@ var ohsnap = (function() {
 onload = function() {
 	ohsnap.init();
 }
+
+//reload button with spinner
+
+document.getElementById("reload-button").addEventListener("click", function(){
+    // show the spinner
+    document.querySelector(".spinner").style.display = "block";
+    location.reload();
+});
+
+
+
+  

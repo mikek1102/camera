@@ -1,10 +1,10 @@
 <!doctype html>
 <html>
+
 <!-- import s3 sdk, set buckt config-->
 <script src="https://sdk.amazonaws.com/js/aws-sdk-2.357.0.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
-
 //Bucket Configurations
 
  var bucketName = "mk-oh-snap-2";
@@ -59,6 +59,12 @@
 				<p>Click the camera to snap a pic of our special day</p>
 			</header>
 		</section>
+
+		<div class="center-button">
+			<button id="reload-button">Load the latest photos<div class="spinner"></div></button>
+		 </div>
+		 
+
 		
 		<!-- <p id="userAgent" style="font-size:.75rem;white-space: nowrap;"></p> -->
 		
@@ -150,7 +156,6 @@
 		</nav>
 
 		<!-- File Save and Upload -->
-		<nav>
 		<form id="uploadForm" class="action-buttons" enctype="multipart/form-data" method="post" action="/upload">
 			<input type="button" value="Submit" id="saveButton" onclick="s3upload()">
 			<a id="dismissSingleView" class="back" data-icon="&#x21a9;" href="index.html">Cancel</a>
@@ -160,10 +165,7 @@
 	
 	<section id="photoUpload">
 
-
-	
 	<script defer src="js/util.js"></script>
-	<!-- <script defer src="js/iDB.js"></script> -->
 	<script defer src="js/swiper-1.7.js"></script>
 	<script defer src="js/photoCrop.js"></script>
 	<script defer src="js/photoFilter.js"></script>
