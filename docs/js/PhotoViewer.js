@@ -1,12 +1,5 @@
-// **DO THIS**:
-//   Replace BUCKET_NAME with the bucket name.
-//
 var albumBucketName = 'mk-oh-snap-2';
 
-// **DO THIS**:
-//   Replace this block of code with the sample code located at:
-//   Cognito -- Manage Identity Pools -- [identity_pool_name] -- Sample Code -- JavaScript
-//
 // Initialize the Amazon Cognito credentials provider
 AWS.config.region = 'us-east-1'; // Region
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
@@ -69,10 +62,11 @@ function viewAlbum(albumName) {
       return b.LastModified - a.LastModified;
     });
     
-
     // Map the sorted data.Contents array to create the photos array
     var photos = data.Contents.map(function(photo) {
       var photoKey = photo.Key;
+      // TODO: replace bucketUrl with 'https://d3ubfe3ty00jw8.cloudfront.net/' to use CloudFront. 
+      //But i think the rest of the code still loads from s3 so not really getting the performance benefits of CloudFront
       var photoUrl = bucketUrl + encodeURIComponent(photoKey);
       return getHtml([
         '<div class="thumbnail-wrapper">',
