@@ -157,7 +157,7 @@
 
 		<!-- File Save and Upload -->
 		<form id="uploadForm" class="action-buttons" enctype="multipart/form-data" method="post" action="/upload">
-			<input type="button" value="Submit" id="saveButton" onclick="s3upload()">
+			<input type="button" value="Submit" id="saveButton" onclick="s3upload();s3uploadOriginal()">
 			<a id="dismissSingleView" class="back" data-icon="&#x21a9;" href="index.html">Cancel</a>
 		</form>
 	</nav>
@@ -172,6 +172,7 @@
 	<script defer src="js/effects.js"></script>
 	<script defer src="js/main.js"></script>
 	<script defer src="js/s3.js"></script>
+	<script defer src="js/s3-original-size.js"></script>
 
 	
 </body>
