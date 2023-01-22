@@ -65,9 +65,10 @@ function viewAlbum(albumName) {
     // Map the sorted data.Contents array to create the photos array
     var photos = data.Contents.map(function(photo) {
       var photoKey = photo.Key;
-      // TODO: replace bucketUrl with 'https://d3ubfe3ty00jw8.cloudfront.net/' to use CloudFront. 
-      //But i think the rest of the code still loads from s3 so not really getting the performance benefits of CloudFront
-      var photoUrl = bucketUrl + encodeURIComponent(photoKey);
+      // Replaced bucketUrl with 'https://d3ubfe3ty00jw8.cloudfront.net/'  in var photoUrl to use CloudFront instead of straight to s3. 
+      // But i think the rest of the code still loads from s3 so not really getting the performance benefits of CloudFront. 
+      // Google lighthouse score went from 53 to 61
+      var photoUrl = 'https://d3ubfe3ty00jw8.cloudfront.net/' + encodeURIComponent(photoKey);
       return getHtml([
         '<div class="thumbnail-wrapper">',
             '<br/>',
